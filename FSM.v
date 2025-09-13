@@ -56,7 +56,7 @@ module FSM(
     wire btnR_d;
     Debouncer c0 (clk, btnL, btnL_d);
     Debouncer c1 (clk, btnR, btnR_d);
-    
+    // Debouncer Rising Edge Identification
     reg btnR_d_prev;
     always @(posedge clk) btnR_d_prev <= btnR_d;
     
@@ -115,6 +115,11 @@ module FSM(
         end
         else if(current_state == OPERATION && next_state == RESULT) begin
             alu_op <= sw[2:0]; // account for only 3-bit value
+        end
+        else if(current_state == RESULT && next_state == INONE) begin
+            operand_one <= 0;
+            operand_two <= 0;
+            alu_op <= 0;
         end
     end
     

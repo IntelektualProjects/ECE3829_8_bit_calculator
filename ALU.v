@@ -33,7 +33,7 @@ module ALU(
             3'b001: result = in1 & in2;
             3'b010: result = in1 | in2;
             3'b011: result = in1 + in2;
-            3'b100: result = in1 + ((~in1) + 8'b1); // Twos complement subtraction
+            3'b100: result = in1 + ((~in2) + 8'b1); // Twos complement subtraction
             default: result = 8'b0;
         endcase
     end
